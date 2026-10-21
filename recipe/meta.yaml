@@ -1,13 +1,14 @@
 {% set name = "yt-napari" %}
-{% set version = "0.5.0" %}
+{% set version = "0.6.0" %}
+{% set python_min = "3.11" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/yt_napari-{{ version }}.tar.gz
-  sha256: bd44c105cde9c7fa79ba915a273e3c4ead1ddaf1394b81d4718a6e7d4b1e8ede
+  url: https://files.pythonhosted.org/packages/source/{{ name[0] }}/{{ name }}/yt_napari-{{ version }}.tar.gz
+  sha256: fb125fe041abff47f7a4e91620c98b667a7ae7a8e51c8444afbbd0200f7e4190
 
 build:
   noarch: python
@@ -16,16 +17,17 @@ build:
 
 requirements:
   host:
+    - python >={{ python_min }}
     - pip
-    - python >=3.8
-    - setuptools-scm
+    - setuptools >=77
+    - setuptools-scm >=8
   run:
     - magicgui >=0.6.1
     - napari >=0.4.19
     - numpy
     - packaging
-    - pydantic
-    - python >=3.8
+    - pydantic >2.0
+    - python >={{ python_min }}
     - qtpy
     - unyt
     - yt >=4.0.1
@@ -37,6 +39,7 @@ test:
     - pip list
     - pip check
   requires:
+    - python {{ python_min }}  
     - pip
 
 about:
