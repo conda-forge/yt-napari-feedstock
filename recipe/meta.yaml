@@ -1,5 +1,6 @@
 {% set name = "yt-napari" %}
 {% set version = "0.6.0" %}
+{% set python_min = "3.11" %}
 
 package:
   name: {{ name|lower }}
@@ -16,16 +17,17 @@ build:
 
 requirements:
   host:
+    - python >={{ python_min }}
     - pip
-    - python >=3.8
-    - setuptools-scm
+    - setuptools >=77
+    - setuptools-scm >=8
   run:
     - magicgui >=0.6.1
     - napari >=0.4.19
     - numpy
     - packaging
-    - pydantic
-    - python >=3.8
+    - pydantic >2.0
+    - python >={{ python_min }}
     - qtpy
     - unyt
     - yt >=4.0.1
@@ -37,6 +39,7 @@ test:
     - pip list
     - pip check
   requires:
+    - python {{ python_min }}  
     - pip
 
 about:
